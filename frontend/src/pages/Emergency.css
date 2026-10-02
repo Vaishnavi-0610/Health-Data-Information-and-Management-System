@@ -1,0 +1,3152 @@
+/* =========================================================
+   CAREKEY - EMERGENCY PAGE
+   ========================================================= */
+
+.emergency-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(120, 20, 30, 0.13),
+      transparent 38%
+    ),
+    #030609;
+
+  color: #edf3f7;
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.emergency-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.emergency-grid {
+  position: absolute;
+  inset: -30%;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 70, 80, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 70, 80, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  transform:
+    perspective(700px)
+    rotateX(58deg)
+    translateY(15%);
+
+  transform-origin: center;
+
+  animation:
+    emergency-grid-move 18s linear infinite;
+
+  opacity: 0.55;
+}
+
+@keyframes emergency-grid-move {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      0 55px,
+      55px 0;
+  }
+}
+
+/* =========================================================
+   RADAR
+   ========================================================= */
+
+.radar,
+.emergency-radar {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 65, 80, 0.12);
+
+  box-shadow:
+    0 0 0 80px
+      rgba(255, 65, 80, 0.025),
+    0 0 0 160px
+      rgba(255, 65, 80, 0.018),
+    0 0 0 240px
+      rgba(255, 65, 80, 0.012);
+
+  opacity: 0.7;
+}
+
+.radar::before,
+.radar::after,
+.emergency-radar::before,
+.emergency-radar::after {
+  content: "";
+  position: absolute;
+
+  inset: 50% auto auto 50%;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 75, 85, 0.15),
+      transparent
+    );
+
+  transform: translate(-50%, -50%);
+}
+
+.radar::after {
+  transform:
+    translate(-50%, -50%)
+    rotate(90deg);
+}
+
+.radar-one,
+.emergency-radar-one {
+  top: -230px;
+  right: -180px;
+
+  animation:
+    radar-float-one 16s ease-in-out infinite;
+}
+
+.radar-two,
+.emergency-radar-two {
+  bottom: -300px;
+  left: -240px;
+
+  width: 620px;
+  height: 620px;
+
+  animation:
+    radar-float-two 20s ease-in-out infinite;
+}
+
+@keyframes radar-float-one {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
+}
+
+@keyframes radar-float-two {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+/* =========================================================
+   PULSE RINGS
+   ========================================================= */
+
+.pulse-ring,
+.emergency-pulse {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.5);
+
+  box-shadow:
+    0 0 20px
+    rgba(255, 70, 80, 0.3);
+
+  animation:
+    pulse-ring-animation 4s ease-out infinite;
+}
+
+.pulse-one,
+.emergency-pulse-one {
+  top: 30%;
+  left: 15%;
+}
+
+.pulse-two,
+.emergency-pulse-two {
+  right: 18%;
+  bottom: 25%;
+
+  animation-delay: 2s;
+}
+
+@keyframes pulse-ring-animation {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  80% {
+    transform: scale(10);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   FLOATING PARTICLES
+   ========================================================= */
+
+.emergency-particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 90, 100, 0.7);
+
+  box-shadow:
+    0 0 12px
+    rgba(255, 70, 80, 0.7);
+
+  animation:
+    particle-float 8s ease-in-out infinite;
+}
+
+.p1 {
+  top: 18%;
+  left: 12%;
+}
+
+.p2 {
+  top: 28%;
+  right: 13%;
+
+  animation-delay: 1.5s;
+}
+
+.p3 {
+  top: 65%;
+  left: 8%;
+
+  animation-delay: 3s;
+}
+
+.p4 {
+  top: 74%;
+  right: 12%;
+
+  animation-delay: 4.5s;
+}
+
+.p5 {
+  top: 42%;
+  left: 90%;
+
+  animation-delay: 2s;
+}
+
+.p6 {
+  top: 83%;
+  left: 48%;
+
+  animation-delay: 5s;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform:
+      translate3d(0, -25px, 0);
+    opacity: 0.8;
+  }
+}
+
+/* =========================================================
+   MEDICAL CROSSES
+   ========================================================= */
+
+.medical-cross {
+  position: absolute;
+
+  color:
+    rgba(255, 80, 90, 0.12);
+
+  font-size: 28px;
+  font-weight: 300;
+
+  animation:
+    medical-cross-float 7s ease-in-out infinite;
+}
+
+.cross-one {
+  top: 22%;
+  right: 27%;
+}
+
+.cross-two {
+  bottom: 24%;
+  left: 23%;
+
+  animation-delay: 2s;
+}
+
+.cross-three {
+  top: 56%;
+  right: 8%;
+
+  animation-delay: 4s;
+}
+
+@keyframes medical-cross-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translateY(-12px);
+    opacity: 0.4;
+  }
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.emergency-header {
+  position: relative;
+
+  width: min(
+    calc(100% - 48px),
+    1180px
+  );
+
+  margin: 0 auto;
+
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  z-index: 5;
+}
+
+.emergency-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #f2f6f8;
+  text-decoration: none;
+}
+
+.emergency-logo-mark {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 65, 80, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 65, 80, 0.25);
+
+  color: #ff6a74;
+
+  box-shadow:
+    0 0 20px
+    rgba(255, 60, 75, 0.08);
+}
+
+.emergency-logo strong {
+  display: block;
+
+  font-size: 15px;
+  letter-spacing: 0.12em;
+}
+
+.emergency-logo span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #68747c;
+
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.emergency-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 13px;
+
+  border-radius: 999px;
+
+  color: #ff7079;
+
+  background:
+    rgba(255, 60, 70, 0.07);
+
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.18);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.emergency-container {
+  position: relative;
+
+  width: min(
+    calc(100% - 48px),
+    1125px
+  );
+
+  margin: 0 auto;
+
+  padding:
+    42px 0
+    70px;
+
+  z-index: 2;
+}
+
+.emergency-top {
+  margin-bottom: 28px;
+}
+
+.back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 22px;
+
+  color: #89959d;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-home:hover {
+  color: #e7edf0;
+
+  transform:
+    translateX(-2px);
+}
+
+.emergency-heading {
+  max-width: 750px;
+}
+
+.emergency-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: #ff646e;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+}
+
+.emergency-heading h1 {
+  margin: 0;
+
+  color: #f2f6f8;
+
+  font-size:
+    clamp(32px, 5vw, 52px);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.04em;
+}
+
+.emergency-heading p {
+  max-width: 650px;
+
+  margin:
+    14px 0 0;
+
+  color: #78858d;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.emergency-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin-bottom: 20px;
+
+  padding: 15px 17px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 60, 70, 0.07);
+
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.22);
+
+  color: #ff8a91;
+}
+
+.emergency-error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.emergency-error strong,
+.emergency-error span {
+  display: block;
+}
+
+.emergency-error strong {
+  margin-bottom: 3px;
+
+  font-size: 13px;
+}
+
+.emergency-error span {
+  color: #b66e73;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   SCANNER CARD
+   ========================================================= */
+
+.scanner-card {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 20, 24, 0.96),
+      rgba(5, 10, 13, 0.98)
+    );
+
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.18);
+
+  box-shadow:
+    0 25px 80px
+    rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(14px);
+}
+
+.scanner-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 80, 90, 0.35),
+      transparent
+    );
+}
+
+/* =========================================================
+   SCANNER TITLE
+   ========================================================= */
+
+.scanner-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 28px 34px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+}
+
+.scanner-icon {
+  width: 53px;
+  height: 53px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 60, 70, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.2);
+
+  color: #ff6871;
+}
+
+.scanner-title h2 {
+  margin: 0 0 5px;
+
+  color: #e7edf0;
+
+  font-size: 20px;
+
+  letter-spacing: -0.02em;
+}
+
+.scanner-title p {
+  margin: 0;
+
+  color: #68757d;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   CAMERA
+   ========================================================= */
+
+.emergency-camera-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 470px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 60, 70, 0.035),
+      transparent 45%
+    ),
+    #05090c;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.emergency-camera-placeholder {
+  width: min(
+    100% - 40px,
+    540px
+  );
+
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 35px 25px;
+}
+
+.emergency-camera-icon {
+  width: 76px;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 22px;
+
+  color: #aab6bd;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 0 45px
+    rgba(255, 255, 255, 0.025);
+}
+
+.emergency-camera-placeholder h3 {
+  margin: 0 0 10px;
+
+  color: #e7edf0;
+
+  font-size: 21px;
+}
+
+.emergency-camera-placeholder p {
+  max-width: 520px;
+
+  margin: 0 0 24px;
+
+  color: #68757d;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+}
+
+.emergency-camera-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 45px;
+
+  padding: 0 20px;
+
+  border: 1px solid
+    rgba(255, 70, 80, 0.25);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 60, 70, 0.09);
+
+  color: #ff747d;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.emergency-camera-button:hover:not(:disabled) {
+  background:
+    rgba(255, 60, 70, 0.14);
+
+  border-color:
+    rgba(255, 70, 80, 0.4);
+
+  transform:
+    translateY(-1px);
+}
+
+.emergency-camera-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   LIVE CAMERA
+   ========================================================= */
+
+.emergency-live-camera {
+  position: relative;
+
+  width: 100%;
+
+  height: 470px;
+
+  background: #020405;
+
+  overflow: hidden;
+}
+
+.emergency-live-camera video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transform:
+    scaleX(-1);
+
+  background: #020405;
+}
+
+/* Dark camera overlay */
+
+.emergency-live-camera::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.08),
+      transparent 25%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.25)
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   FACE FRAME
+   ========================================================= */
+
+.emergency-face-frame {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: min(
+    48vw,
+    330px
+  );
+
+  height: min(
+    62vw,
+    400px
+  );
+
+  transform:
+    translate(-50%, -50%);
+
+  border:
+    1px solid
+    rgba(255, 90, 100, 0.3);
+
+  border-radius: 45% 45% 42% 42%;
+
+  box-shadow:
+    0 0 0 9999px
+    rgba(0, 0, 0, 0.16);
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CORNERS
+   ========================================================= */
+
+.scan-corner {
+  position: absolute;
+
+  width: 35px;
+  height: 35px;
+
+  border-color: #ff6972;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(255, 70, 80, 0.4)
+    );
+}
+
+.scan-corner.top-left {
+  top: -2px;
+  left: -2px;
+
+  border-top: 3px solid;
+  border-left: 3px solid;
+
+  border-radius: 12px 0 0 0;
+}
+
+.scan-corner.top-right {
+  top: -2px;
+  right: -2px;
+
+  border-top: 3px solid;
+  border-right: 3px solid;
+
+  border-radius: 0 12px 0 0;
+}
+
+.scan-corner.bottom-left {
+  bottom: -2px;
+  left: -2px;
+
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+
+  border-radius: 0 0 0 12px;
+}
+
+.scan-corner.bottom-right {
+  bottom: -2px;
+  right: -2px;
+
+  border-bottom: 3px solid;
+  border-right: 3px solid;
+
+  border-radius: 0 0 12px 0;
+}
+
+/* =========================================================
+   SCANNING LINE
+   ========================================================= */
+
+.scan-line {
+  position: absolute;
+
+  left: 8%;
+  right: 8%;
+
+  top: 15%;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ff6872,
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px
+    rgba(255, 70, 80, 0.7);
+
+  animation:
+    face-scan-line 2.8s ease-in-out infinite;
+}
+
+@keyframes face-scan-line {
+  0% {
+    top: 15%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    top: 80%;
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 15%;
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   CAMERA STATUS
+   ========================================================= */
+
+.emergency-camera-status {
+  position: absolute;
+
+  left: 50%;
+  bottom: 20px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 13px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(2, 5, 7, 0.78);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  color: #aeb8bd;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  z-index: 6;
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ff606a;
+
+  box-shadow:
+    0 0 10px
+    rgba(255, 70, 80, 0.7);
+
+  animation:
+    status-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes status-blink {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   CAMERA ACTIONS
+   ========================================================= */
+
+.emergency-camera-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 22px 30px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.primary-button,
+.secondary-button,
+.emergency-scan-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 43px;
+
+  padding:
+    0 18px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.primary-button {
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.35);
+
+  background:
+    rgba(255, 60, 70, 0.13);
+
+  color: #ff858c;
+}
+
+.primary-button:hover {
+  transform:
+    translateY(-1px);
+
+  background:
+    rgba(255, 60, 70, 0.18);
+}
+
+.secondary-button {
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #aeb8bd;
+}
+
+.secondary-button:hover {
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  color: #e8edf0;
+}
+
+.emergency-scan-button {
+  border:
+    1px solid
+    rgba(255, 70, 80, 0.32);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 65, 75, 0.17),
+      rgba(255, 65, 75, 0.08)
+    );
+
+  color: #ff858d;
+}
+
+.emergency-scan-button:hover:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  border-color:
+    rgba(255, 70, 80, 0.5);
+
+  background:
+    rgba(255, 65, 75, 0.2);
+}
+
+.emergency-scan-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SCANNER STATUS GRID
+   ========================================================= */
+
+.scanner-status-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+.scanner-status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px 24px;
+
+  border-right:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+.scanner-status-item:last-child {
+  border-right: 0;
+}
+
+.status-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #8d9aa1;
+}
+
+.scanner-status-item span,
+.scanner-status-item strong {
+  display: block;
+}
+
+.scanner-status-item span {
+  margin-bottom: 5px;
+
+  color: #56636b;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+.scanner-status-item strong {
+  color: #d8e0e4;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.emergency-security-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin: 22px 25px 25px;
+
+  padding: 16px 18px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  color: #718087;
+}
+
+.emergency-security-notice > svg {
+  flex-shrink: 0;
+
+  color: #7d929c;
+}
+
+.emergency-security-notice strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #b9c5ca;
+
+  font-size: 12px;
+}
+
+.emergency-security-notice p {
+  margin: 0;
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   MATCHED PATIENT CARD
+   ========================================================= */
+
+.patient-result-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 21, 24, 0.97),
+      rgba(4, 10, 12, 0.98)
+    );
+
+  border:
+    1px solid
+    rgba(70, 220, 145, 0.18);
+
+  box-shadow:
+    0 25px 80px
+    rgba(0, 0, 0, 0.35);
+}
+
+.match-success-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding-bottom: 24px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+.match-success-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  color: #6ee7aa;
+
+  background:
+    rgba(70, 220, 145, 0.08);
+
+  border:
+    1px solid
+    rgba(70, 220, 145, 0.2);
+
+  box-shadow:
+    0 0 30px
+    rgba(70, 220, 145, 0.06);
+}
+
+.match-success-header span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #6ee7aa;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 0.15em;
+}
+
+.match-success-header h2 {
+  margin: 0;
+
+  color: #eaf1f3;
+
+  font-size: 26px;
+}
+
+.match-success-header p {
+  margin: 5px 0 0;
+
+  color: #6d7b82;
+
+  font-size: 12px;
+}
+
+.match-success-header p strong {
+  color: #a9b6bc;
+}
+
+/* =========================================================
+   MATCH CONFIDENCE
+   ========================================================= */
+
+.match-confidence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  padding: 13px 15px;
+
+  border-radius: 9px;
+
+  background:
+    rgba(70, 220, 145, 0.04);
+
+  border:
+    1px solid
+    rgba(70, 220, 145, 0.09);
+}
+
+.match-confidence span {
+  color: #738087;
+
+  font-size: 11px;
+}
+
+.match-confidence strong {
+  color: #70dda6;
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   MEDICAL ALERT
+   ========================================================= */
+
+.medical-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 20px;
+
+  padding: 14px 16px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 185, 65, 0.05);
+
+  border:
+    1px solid
+    rgba(255, 185, 65, 0.12);
+
+  color: #d8b675;
+}
+
+.medical-alert svg {
+  flex-shrink: 0;
+}
+
+.medical-alert strong,
+.medical-alert span {
+  display: block;
+}
+
+.medical-alert strong {
+  margin-bottom: 3px;
+
+  font-size: 12px;
+}
+
+.medical-alert span {
+  color: #806f52;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   PATIENT DATA
+   ========================================================= */
+
+.patient-data-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 1px;
+
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+.patient-data-item {
+  min-height: 82px;
+
+  padding: 16px;
+
+  background:
+    rgba(4, 10, 12, 0.94);
+}
+
+.patient-data-item span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #56646b;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+.patient-data-item strong {
+  color: #cbd5d9;
+
+  font-size: 13px;
+
+  word-break: break-word;
+}
+
+.patient-data-item.blood-group strong {
+  color: #ff7881;
+
+  font-size: 18px;
+}
+
+/* =========================================================
+   MEDICAL DATA
+   ========================================================= */
+
+.emergency-medical-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.emergency-medical-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  min-height: 130px;
+
+  padding: 17px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+}
+
+.medical-card-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  color: #8d9da5;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+.emergency-medical-card span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #59666d;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.emergency-medical-card p {
+  margin: 0;
+
+  color: #bac5c9;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  word-break: break-word;
+}
+
+.allergy-card .medical-card-icon {
+  color: #e3a965;
+
+  background:
+    rgba(255, 185, 65, 0.06);
+}
+
+/* =========================================================
+   RESULT ACTIONS
+   ========================================================= */
+
+.result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 24px;
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+.spin {
+  animation:
+    spin-animation 1s linear infinite;
+}
+
+@keyframes spin-animation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .scanner-status-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .scanner-status-item {
+    border-right: 0;
+
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.05);
+  }
+
+  .scanner-status-item:last-child {
+    border-bottom: 0;
+  }
+
+  .patient-data-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .emergency-medical-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .emergency-header {
+    width:
+      calc(100% - 28px);
+
+    min-height: 70px;
+  }
+
+  .emergency-container {
+    width:
+      calc(100% - 28px);
+
+    padding-top: 30px;
+  }
+
+  .emergency-logo span {
+    display: none;
+  }
+
+  .emergency-badge {
+    padding: 7px 9px;
+
+    font-size: 8px;
+  }
+
+  .scanner-title {
+    padding: 22px 20px;
+  }
+
+  .emergency-camera-wrapper {
+    min-height: 400px;
+  }
+
+  .emergency-live-camera {
+    height: 400px;
+  }
+
+  .emergency-face-frame {
+    width: 250px;
+    height: 315px;
+  }
+
+  .emergency-camera-actions {
+    flex-direction: column;
+
+    padding: 18px;
+  }
+
+  .emergency-camera-actions
+    button {
+    width: 100%;
+  }
+
+  .patient-result-card {
+    padding: 20px;
+  }
+
+  .match-success-header h2 {
+    font-size: 22px;
+  }
+
+  .patient-data-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .result-actions
+    a,
+  .result-actions
+    button {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .emergency-heading h1 {
+    font-size: 34px;
+  }
+
+  .emergency-heading p {
+    font-size: 13px;
+  }
+
+  .scanner-title h2 {
+    font-size: 17px;
+  }
+
+  .scanner-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .emergency-camera-wrapper {
+    min-height: 350px;
+  }
+
+  .emergency-live-camera {
+    height: 350px;
+  }
+
+  .emergency-face-frame {
+    width: 220px;
+    height: 280px;
+  }
+
+  .emergency-camera-status {
+    bottom: 12px;
+
+    font-size: 8px;
+  }
+
+  .emergency-security-notice {
+    margin:
+      18px 15px 18px;
+
+    padding: 13px;
+  }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .emergency-grid,
+  .radar,
+  .emergency-radar,
+  .pulse-ring,
+  .emergency-pulse,
+  .emergency-particle,
+  .medical-cross,
+  .scan-line,
+  .status-dot {
+    animation: none;
+  }
+
+}
+
+/* =========================================================
+   CAREKEY - CURRENT EMERGENCY JSX COMPATIBILITY / FIXES
+
+   The original Emergency page uses the class names below.
+   This block intentionally preserves the existing large
+   design above and only connects the current JSX names to
+   the original visual system.
+   ========================================================= */
+
+/* -------------------------
+   HEADER
+   ------------------------- */
+
+.emergency-logo-text {
+  display: block;
+  min-width: 0;
+}
+
+.emergency-header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 70, 80, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 60, 70, 0.07);
+  color: #ff7079;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.header-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #ff606a;
+  box-shadow: 0 0 10px rgba(255, 70, 80, 0.7);
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+.emergency-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 22px;
+  color: #89959d;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.emergency-back:hover {
+  color: #e7edf0;
+  transform: translateX(-2px);
+}
+
+.emergency-heading em {
+  color: #ff6a74;
+  font-style: normal;
+}
+
+/* -------------------------
+   STATUS BAR - MAIN FIX
+   ------------------------- */
+
+.emergency-status-bar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 28px 0 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px;
+  background: rgba(5, 10, 13, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.emergency-status-item {
+  min-width: 0;
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.emergency-status-item:last-child {
+  border-right: 0;
+}
+
+.emergency-status-item > div:last-child {
+  min-width: 0;
+}
+
+.emergency-status-item small,
+.emergency-status-item strong {
+  display: block;
+}
+
+.emergency-status-item small {
+  margin-bottom: 6px;
+  color: #56636b;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.emergency-status-item strong {
+  color: #d8e0e4;
+  font-size: 13px;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.emergency-status-divider {
+  display: none;
+}
+
+/* Keep the status icon from shrinking when the viewport is narrower. */
+.emergency-status-item .status-icon {
+  flex: 0 0 38px;
+}
+
+/* -------------------------
+   ALERTS
+   ------------------------- */
+
+.emergency-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid rgba(70, 220, 145, 0.18);
+  border-radius: 11px;
+  background: rgba(70, 220, 145, 0.06);
+  color: #78dfa9;
+  font-size: 12px;
+}
+
+.emergency-error {
+  margin-top: 0;
+}
+
+/* -------------------------
+   SCANNER CARD - CURRENT JSX
+   ------------------------- */
+
+.emergency-scanner-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 70, 80, 0.18);
+  border-radius: 17px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 20, 24, 0.96),
+      rgba(5, 10, 13, 0.98)
+    );
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.emergency-scanner-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  z-index: 2;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 80, 90, 0.35),
+      transparent
+    );
+}
+
+.scanner-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 34px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.scanner-card-header > div:first-child {
+  min-width: 0;
+}
+
+.scanner-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #ff646e;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.scanner-card-header h2 {
+  margin: 0 0 5px;
+  color: #e7edf0;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.scanner-card-header p {
+  margin: 0;
+  color: #68757d;
+  font-size: 12px;
+}
+
+.scanner-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 70, 80, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 60, 70, 0.055);
+  color: #ff747d;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.scanner-live-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff606a;
+  box-shadow: 0 0 9px rgba(255, 70, 80, 0.7);
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+/* -------------------------
+   CAMERA PLACEHOLDER
+   ------------------------- */
+
+.scanner-icon-ring {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  color: #aab6bd;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.025);
+}
+
+.emergency-start-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 45px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 70, 80, 0.25);
+  border-radius: 9px;
+  background: rgba(255, 60, 70, 0.09);
+  color: #ff747d;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.emergency-start-button:hover:not(:disabled) {
+  background: rgba(255, 60, 70, 0.14);
+  border-color: rgba(255, 70, 80, 0.4);
+  transform: translateY(-1px);
+}
+
+.emergency-start-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.emergency-camera-error {
+  width: min(100%, 520px);
+  margin: 0 0 18px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 70, 80, 0.18);
+  border-radius: 9px;
+  background: rgba(255, 60, 70, 0.055);
+  color: #ff8a91;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* -------------------------
+   LIVE CAMERA OVERLAY
+   ------------------------- */
+
+.emergency-camera-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(
+      rgba(255, 70, 80, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 70, 80, 0.035) 1px,
+      transparent 1px
+    );
+  background-size: 45px 45px;
+}
+
+.scanner-corner {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  z-index: 5;
+  border-color: #ff6972;
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(255, 70, 80, 0.4)
+    );
+}
+
+.scanner-corner.top-left {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid;
+  border-left: 3px solid;
+  border-radius: 12px 0 0 0;
+}
+
+.scanner-corner.top-right {
+  top: -2px;
+  right: -2px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+  border-radius: 0 12px 0 0;
+}
+
+.scanner-corner.bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-radius: 0 0 0 12px;
+}
+
+.scanner-corner.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 3px solid;
+  border-right: 3px solid;
+  border-radius: 0 0 12px 0;
+}
+
+.emergency-scan-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 15%;
+  height: 2px;
+  z-index: 5;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ff6872,
+      transparent
+    );
+  box-shadow: 0 0 12px rgba(255, 70, 80, 0.7);
+  animation:
+    face-scan-line 2.8s ease-in-out infinite;
+}
+
+.face-frame-label {
+  position: absolute;
+  left: 50%;
+  top: -28px;
+  transform: translateX(-50%);
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 70, 80, 0.18);
+  border-radius: 5px;
+  background: rgba(2, 5, 7, 0.78);
+  color: #ff727a;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+/* -------------------------
+   SECURITY STRIP
+   ------------------------- */
+
+.scanner-security {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin: 22px 25px 25px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #718087;
+}
+
+.scanner-security > svg {
+  flex-shrink: 0;
+  color: #7d929c;
+}
+
+.scanner-security strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #b9c5ca;
+  font-size: 12px;
+}
+
+.scanner-security p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+/* -------------------------
+   MATCHED PATIENT RESULT
+   ------------------------- */
+
+.patient-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #6ee7aa;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.match-score {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.match-score small {
+  color: #66757d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.match-score strong {
+  margin-top: 4px;
+  color: #70dda6;
+  font-size: 18px;
+}
+
+.patient-identity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.patient-avatar {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 64px;
+  border: 1px solid rgba(70, 220, 145, 0.16);
+  border-radius: 16px;
+  background: rgba(70, 220, 145, 0.055);
+  color: #75dda9;
+}
+
+.patient-name-block {
+  min-width: 0;
+}
+
+.patient-name-block span {
+  display: block;
+  margin-bottom: 4px;
+  color: #56646b;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.patient-name-block h2 {
+  display: inline;
+  margin: 0 8px 0 0;
+  color: #eaf1f3;
+  font-size: 24px;
+}
+
+.patient-name-block strong {
+  color: #89979e;
+  font-size: 13px;
+}
+
+.patient-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.patient-info-item {
+  min-width: 0;
+  min-height: 82px;
+  padding: 16px;
+  background: rgba(4, 10, 12, 0.94);
+}
+
+.patient-info-item small {
+  display: block;
+  margin-bottom: 7px;
+  color: #56646b;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.patient-info-item strong {
+  display: block;
+  color: #cbd5d9;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.patient-info-item.blood-group strong {
+  color: #ff7881;
+  font-size: 18px;
+}
+
+.medical-result-section {
+  margin-top: 28px;
+}
+
+.medical-result-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #7d929c;
+}
+
+.medical-result-heading > svg {
+  flex-shrink: 0;
+}
+
+.medical-result-heading span {
+  display: block;
+  margin-bottom: 4px;
+  color: #6ee7aa;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.medical-result-heading h3 {
+  margin: 0;
+  color: #dbe5e8;
+  font-size: 18px;
+}
+
+.medical-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.medical-result-card {
+  min-width: 0;
+  min-height: 130px;
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.medical-result-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #59666d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.medical-result-card strong {
+  display: block;
+  color: #bac5c9;
+  font-size: 12px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.medical-result-card.allergy-card {
+  border-color: rgba(255, 185, 65, 0.12);
+  background: rgba(255, 185, 65, 0.035);
+}
+
+.patient-contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.patient-contact > div {
+  min-width: 0;
+}
+
+.patient-contact small {
+  display: block;
+  margin-bottom: 6px;
+  color: #56646b;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.patient-contact strong {
+  color: #bac5c9;
+  font-size: 12px;
+  word-break: break-word;
+}
+
+.patient-result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.emergency-secondary-button,
+.emergency-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.emergency-secondary-button {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  color: #aeb8bd;
+}
+
+.emergency-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8edf0;
+  transform: translateY(-1px);
+}
+
+.emergency-primary-link {
+  border: 1px solid rgba(255, 70, 80, 0.35);
+  background: rgba(255, 60, 70, 0.13);
+  color: #ff858c;
+}
+
+.emergency-primary-link:hover {
+  background: rgba(255, 60, 70, 0.18);
+  transform: translateY(-1px);
+}
+
+.no-patients-notice {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #718087;
+}
+
+.no-patients-notice > svg {
+  flex-shrink: 0;
+  color: #7d929c;
+}
+
+.no-patients-notice > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.no-patients-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #b9c5ca;
+  font-size: 12px;
+}
+
+.no-patients-notice p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.no-patients-notice a {
+  flex-shrink: 0;
+  color: #ff7b84;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.no-patients-notice a:hover {
+  text-decoration: underline;
+}
+
+.emergency-footer-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 28px;
+  color: #4e5b62;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+/* -------------------------
+   PARTICLE NAME COMPATIBILITY
+   ------------------------- */
+
+.particle-one,
+.particle-two,
+.particle-three,
+.particle-four,
+.particle-five,
+.particle-six {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 90, 100, 0.7);
+  box-shadow: 0 0 12px rgba(255, 70, 80, 0.7);
+  animation: particle-float 8s ease-in-out infinite;
+}
+
+.particle-one {
+  top: 18%;
+  left: 12%;
+}
+
+.particle-two {
+  top: 28%;
+  right: 13%;
+  animation-delay: 1.5s;
+}
+
+.particle-three {
+  top: 65%;
+  left: 8%;
+  animation-delay: 3s;
+}
+
+.particle-four {
+  top: 74%;
+  right: 12%;
+  animation-delay: 4.5s;
+}
+
+.particle-five {
+  top: 42%;
+  left: 90%;
+  animation-delay: 2s;
+}
+
+.particle-six {
+  top: 83%;
+  left: 48%;
+  animation-delay: 5s;
+}
+
+/* -------------------------
+   RESPONSIVE FIXES FOR CURRENT JSX
+   ------------------------- */
+
+@media (max-width: 900px) {
+  .emergency-status-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .emergency-status-item {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  }
+
+  .emergency-status-item:last-child {
+    border-bottom: 0;
+  }
+
+  .patient-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .medical-result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .emergency-header-status {
+    padding: 7px 9px;
+    font-size: 8px;
+  }
+
+  .scanner-card-header {
+    padding: 22px 20px;
+  }
+
+  .emergency-status-item {
+    padding: 16px 18px;
+  }
+
+  .patient-result-header {
+    align-items: flex-start;
+  }
+
+  .patient-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-result-actions {
+    flex-direction: column;
+  }
+
+  .patient-result-actions a,
+  .patient-result-actions button {
+    width: 100%;
+  }
+
+  .patient-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .no-patients-notice {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .no-patients-notice a {
+    width: 100%;
+    margin-left: 33px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scanner-card-header {
+    gap: 12px;
+  }
+
+  .scanner-live-indicator {
+    padding: 6px 8px;
+    font-size: 8px;
+  }
+
+  .emergency-status-item {
+    gap: 11px;
+    padding: 15px;
+  }
+
+  .emergency-status-item strong {
+    font-size: 12px;
+  }
+
+  .patient-identity {
+    align-items: flex-start;
+  }
+
+  .patient-name-block h2 {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 21px;
+  }
+
+  .patient-name-block strong {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-status-dot,
+  .scanner-live-indicator span,
+  .emergency-scan-line,
+  .particle-one,
+  .particle-two,
+  .particle-three,
+  .particle-four,
+  .particle-five,
+  .particle-six {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   AUTHORIZED EMERGENCY ACCESS
+========================================================= */
+
+.emergency-access-banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 20px;
+  padding: 13px 16px;
+  border: 1px solid rgba(82, 201, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(82, 201, 255, 0.055);
+  color: rgba(231, 240, 246, 0.82);
+  font-size: 12px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.emergency-access-banner svg {
+  flex: 0 0 auto;
+  color: #52c9ff;
+}
+
+.emergency-access-banner strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.emergency-access-banner small {
+  color: rgba(231, 240, 246, 0.55);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   READ-ONLY EMERGENCY SNAPSHOT
+========================================================= */
+
+.emergency-readonly-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 22px;
+  padding: 15px 17px;
+  border: 1px solid rgba(82, 201, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(82, 201, 255, 0.045);
+  box-sizing: border-box;
+}
+
+.emergency-readonly-notice > svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #52c9ff;
+}
+
+.emergency-readonly-notice > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.emergency-readonly-notice strong {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.emergency-readonly-notice span {
+  color: rgba(231, 240, 246, 0.58);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   MOBILE SECURITY ELEMENTS
+========================================================= */
+
+@media (max-width: 700px) {
+  .emergency-access-banner {
+    align-items: flex-start;
+    font-size: 11px;
+  }
+
+  .emergency-access-banner small {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .emergency-readonly-notice {
+    padding: 13px;
+  }
+
+  .emergency-readonly-notice span {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   EMERGENCY ACCESS AUTHORIZATION SPACING FIX
+   ========================================================= */
+
+.emergency-authorized-access {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  min-height: 56px;
+
+  margin: 28px 0 18px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 20, 30, 0.92),
+      rgba(5, 13, 20, 0.82)
+    );
+
+  color: #aebbc3;
+
+  overflow: hidden;
+}
+
+.emergency-authorized-access::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.045),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.emergency-authorized-access svg {
+  flex: 0 0 auto;
+
+  color: #38bdf8;
+}
+
+.emergency-authorized-access strong {
+  color: #e7edf1;
+  font-weight: 700;
+}
+
+.emergency-authorized-access span {
+  position: relative;
+  z-index: 1;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.emergency-authorized-access .access-role {
+  color: #66747d;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.emergency-scanner-card {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  margin-top: 0;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  box-sizing: border-box;
+}
+
+
+/* Keep scanner heading completely inside the card */
+
+.emergency-scanner-card .scanner-card-header {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 34px 42px 28px;
+
+  box-sizing: border-box;
+}
+
+
+/* Make sure the title doesn't get clipped */
+
+.emergency-scanner-card .scanner-card-header > div:first-child {
+  min-width: 0;
+}
+
+.emergency-scanner-card .scanner-card-header h2 {
+  margin: 8px 0 7px;
+
+  line-height: 1.2;
+
+  overflow: visible;
+}
+
+.emergency-scanner-card .scanner-card-header p {
+  margin: 0;
+
+  line-height: 1.6;
+}
+
+
+
+.emergency-container {
+  padding-top: 42px;
+  padding-bottom: 90px;
+}
+
+
+
+@media (max-width: 700px) {
+
+  .emergency-authorized-access {
+    min-height: auto;
+
+    margin-top: 22px;
+    margin-bottom: 16px;
+
+    padding: 14px 16px;
+
+    align-items: flex-start;
+  }
+
+  .emergency-authorized-access span {
+    font-size: 11px;
+  }
+
+  .emergency-authorized-access .access-role {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .emergency-scanner-card .scanner-card-header {
+    padding: 24px 20px 22px;
+
+    flex-direction: column;
+
+    gap: 16px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .emergency-authorized-access {
+    border-radius: 12px;
+  }
+
+  .emergency-scanner-card {
+    border-radius: 14px;
+  }
+
+  .emergency-scanner-card .scanner-card-header {
+    padding: 21px 17px 20px;
+  }
+
+}

@@ -1,0 +1,2052 @@
+/* =========================================================
+   CAREKEY PATIENT REGISTRATION
+========================================================= */
+
+.register-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(45, 132, 172, 0.13),
+      transparent 34%
+    ),
+    #020507;
+
+  color: #edf5f9;
+}
+
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
+
+.register-background {
+  position: fixed;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(32, 110, 145, 0.045),
+      transparent 42%
+    );
+}
+
+/* Perspective biometric grid */
+
+.biometric-grid {
+  position: absolute;
+  inset: -25%;
+
+  opacity: 0.17;
+
+  background-image:
+    linear-gradient(
+      rgba(82, 184, 225, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(82, 184, 225, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  transform:
+    perspective(600px)
+    rotateX(63deg)
+    translateY(18%);
+
+  animation:
+    gridMove
+    18s
+    linear
+    infinite;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 22%,
+      black 75%,
+      transparent
+    );
+}
+
+@keyframes gridMove {
+  0% {
+    transform:
+      perspective(600px)
+      rotateX(63deg)
+      translateY(18%)
+      translateX(0);
+  }
+
+  50% {
+    transform:
+      perspective(600px)
+      rotateX(63deg)
+      translateY(20%)
+      translateX(-25px);
+  }
+
+  100% {
+    transform:
+      perspective(600px)
+      rotateX(63deg)
+      translateY(18%)
+      translateX(0);
+  }
+}
+
+/* Soft glowing orbs */
+
+.biometric-orb {
+  position: absolute;
+
+  width: 360px;
+  height: 360px;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  opacity: 0.08;
+
+  animation:
+    orbFloat
+    14s
+    ease-in-out
+    infinite;
+}
+
+.orb-one {
+  top: 8%;
+  right: -150px;
+
+  background: #32a9e6;
+}
+
+.orb-two {
+  bottom: -120px;
+  left: -130px;
+
+  background: #1c769e;
+
+  animation-delay: -6s;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(
+      -30px,
+      25px,
+      0
+    );
+  }
+}
+
+/* Face recognition circles */
+
+.face-scan-circle {
+  position: absolute;
+
+  left: 50%;
+  top: 48%;
+
+  border:
+    1px solid
+    rgba(92, 193, 234, 0.12);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  opacity: 0.42;
+}
+
+.scan-circle-one {
+  width: 390px;
+  height: 390px;
+
+  animation:
+    recognitionRotate
+    28s
+    linear
+    infinite;
+}
+
+.scan-circle-two {
+  width: 570px;
+  height: 570px;
+
+  border-style: dashed;
+
+  opacity: 0.18;
+
+  animation:
+    recognitionRotateReverse
+    38s
+    linear
+    infinite;
+}
+
+.face-scan-circle::before,
+.face-scan-circle::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #63c9f3;
+
+  box-shadow:
+    0 0 14px
+    rgba(85, 204, 247, 0.8);
+
+  transform:
+    translate(-50%, -50%);
+}
+
+.face-scan-circle::after {
+  width: 3px;
+  height: 3px;
+
+  box-shadow:
+    0 0 9px
+    rgba(85, 204, 247, 0.9);
+}
+
+@keyframes recognitionRotate {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+}
+
+@keyframes recognitionRotateReverse {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+}
+
+/* Horizontal scanner */
+
+.scan-line-background {
+  position: absolute;
+
+  left: 7%;
+  right: 7%;
+  top: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(89, 202, 242, 0.4),
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px
+    rgba(82, 196, 239, 0.4);
+
+  opacity: 0.25;
+
+  animation:
+    backgroundScan
+    10s
+    ease-in-out
+    infinite;
+}
+
+@keyframes backgroundScan {
+  0% {
+    transform: translateY(12vh);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+
+  85% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateY(88vh);
+    opacity: 0;
+  }
+}
+
+/* Floating biometric particles */
+
+.biometric-particle {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #61c7ef;
+
+  box-shadow:
+    0 0 10px
+    rgba(91, 201, 242, 0.7);
+
+  opacity: 0.45;
+
+  animation:
+    particleFloat
+    9s
+    ease-in-out
+    infinite;
+}
+
+.particle-one {
+  left: 16%;
+  top: 28%;
+}
+
+.particle-two {
+  left: 82%;
+  top: 35%;
+
+  animation-delay: -3s;
+}
+
+.particle-three {
+  left: 28%;
+  top: 75%;
+
+  animation-delay: -5s;
+}
+
+.particle-four {
+  left: 74%;
+  top: 72%;
+
+  animation-delay: -7s;
+}
+
+.particle-five {
+  left: 51%;
+  top: 19%;
+
+  animation-delay: -2s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+
+    opacity: 0.18;
+  }
+
+  50% {
+    transform:
+      translate3d(15px, -22px, 0)
+      scale(1.5);
+
+    opacity: 0.6;
+  }
+}
+
+/* Small medical/biometric cross markers */
+
+.biometric-cross {
+  position: absolute;
+
+  color: rgba(93, 194, 234, 0.2);
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  animation:
+    crossPulse
+    5s
+    ease-in-out
+    infinite;
+}
+
+.cross-one {
+  left: 12%;
+  top: 44%;
+}
+
+.cross-two {
+  right: 14%;
+  top: 25%;
+
+  animation-delay: -2s;
+}
+
+.cross-three {
+  right: 21%;
+  bottom: 18%;
+
+  animation-delay: -4s;
+}
+
+@keyframes crossPulse {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(1.1);
+  }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.register-header {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 38px;
+
+  border-bottom:
+    1px solid
+    rgba(139, 198, 226, 0.08);
+
+  background:
+    rgba(2, 7, 10, 0.32);
+
+  backdrop-filter:
+    blur(14px);
+}
+
+.register-logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: #eaf4f8;
+
+  text-decoration: none;
+}
+
+.register-logo-mark {
+  display: grid;
+
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  border:
+    1px solid
+    rgba(114, 200, 250, 0.35);
+
+  border-radius: 9px;
+
+  color: #8bd5fb;
+
+  background:
+    rgba(38, 104, 139, 0.15);
+}
+
+.register-logo-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.register-logo-text strong {
+  color: #eaf4f8;
+
+  font-size: 15px;
+
+  letter-spacing: 0.04em;
+}
+
+.register-logo-text span {
+  color: #60717b;
+
+  font-size: 8px;
+
+  letter-spacing: 0.05em;
+}
+
+.secure-badge {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #71828c;
+
+  font-size: 10px;
+}
+
+.secure-badge svg {
+  color: #63c5ee;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.register-container {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    min(
+      900px,
+      calc(100% - 40px)
+    );
+
+  margin: 0 auto;
+
+  padding-top: 48px;
+}
+
+.register-top {
+  position: relative;
+}
+
+.back-home {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 28px;
+
+  color: #657883;
+
+  font-size: 10px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease;
+}
+
+.back-home:hover {
+  color: #91d8f7;
+}
+
+.register-heading {
+  text-align: center;
+}
+
+.register-label {
+  color: #69c1ee;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+.register-heading h1 {
+  margin:
+    14px 0 15px;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      60px
+    );
+
+  line-height: 0.98;
+
+  font-weight: 500;
+
+  letter-spacing: -0.06em;
+}
+
+.register-heading h1 em {
+  color: #8ba8b8;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-weight: 400;
+}
+
+.register-heading p {
+  max-width: 570px;
+
+  margin: 0 auto;
+
+  color: #788894;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-wrapper {
+  display: flex;
+
+  align-items: center;
+
+  margin:
+    48px auto 22px;
+
+  max-width: 720px;
+}
+
+.progress-step {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  opacity: 0.4;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.progress-step.active {
+  opacity: 1;
+
+  transform: translateY(-1px);
+}
+
+.progress-icon {
+  display: grid;
+
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 auto;
+
+  border:
+    1px solid
+    rgba(142, 195, 222, 0.18);
+
+  border-radius: 50%;
+
+  background:
+    rgba(11, 26, 35, 0.75);
+
+  color: #7c919e;
+}
+
+.progress-step.active
+.progress-icon {
+  color: #081219;
+
+  background: #83d1f6;
+
+  border-color: #83d1f6;
+
+  box-shadow:
+    0 0 18px
+    rgba(96, 199, 241, 0.18);
+}
+
+.progress-step strong {
+  display: block;
+
+  color: #d7e4ea;
+
+  font-size: 10px;
+}
+
+.progress-step small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #596a75;
+
+  font-size: 8px;
+}
+
+.progress-line {
+  flex: 1;
+
+  height: 1px;
+
+  margin:
+    0 12px;
+
+  background:
+    rgba(135, 188, 215, 0.12);
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.form-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin:
+    0 0 20px;
+
+  padding:
+    11px 13px;
+
+  border:
+    1px solid
+    rgba(255, 91, 99, 0.2);
+
+  border-radius: 7px;
+
+  background:
+    rgba(255, 63, 72, 0.05);
+
+  color: #ff858b;
+
+  font-size: 10px;
+}
+
+.form-error svg {
+  flex: 0 0 auto;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.register-card {
+  position: relative;
+
+  border:
+    1px solid
+    rgba(128, 194, 224, 0.12);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(11, 24, 32, 0.91),
+      rgba(4, 12, 17, 0.88)
+    );
+
+  box-shadow:
+    0 30px 100px
+    rgba(0, 0, 0, 0.35);
+
+  backdrop-filter:
+    blur(20px);
+
+  overflow: hidden;
+}
+
+.card-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding:
+    28px 34px;
+
+  border-bottom:
+    1px solid
+    rgba(130, 189, 216, 0.08);
+}
+
+.card-title-icon {
+  display: grid;
+
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 10px;
+
+  color: #76c9f4;
+
+  background:
+    rgba(55, 146, 190, 0.1);
+
+  border:
+    1px solid
+    rgba(83, 179, 225, 0.14);
+}
+
+.card-title-icon.medical {
+  color: #ff737b;
+
+  background:
+    rgba(218, 61, 70, 0.08);
+
+  border-color:
+    rgba(255, 91, 100, 0.13);
+}
+
+.card-title-icon.biometric {
+  color: #76d8b0;
+
+  background:
+    rgba(53, 178, 132, 0.08);
+
+  border-color:
+    rgba(70, 204, 154, 0.13);
+}
+
+.card-title h2 {
+  margin: 0;
+
+  color: #e7f0f4;
+
+  font-size: 17px;
+
+  font-weight: 600;
+}
+
+.card-title p {
+  margin:
+    5px 0 0;
+
+  color: #657580;
+
+  font-size: 10px;
+}
+
+.form-content {
+  padding: 30px 34px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 19px;
+}
+
+.form-group {
+  min-width: 0;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #a6b5be;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+.form-group label span {
+  margin-left: 3px;
+
+  color: #ff6e76;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    rgba(130, 187, 214, 0.12);
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background:
+    rgba(4, 12, 17, 0.82);
+
+  color: #e4edf2;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+  height: 44px;
+
+  padding:
+    0 13px;
+}
+
+.form-group textarea {
+  min-height: 110px;
+
+  padding:
+    12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #45545e;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color:
+    rgba(93, 190, 239, 0.55);
+
+  background:
+    rgba(7, 19, 26, 0.92);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(57, 157, 204, 0.07);
+}
+
+/* =========================================================
+   MEDICAL
+========================================================= */
+
+.medical-notice {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+
+  padding:
+    12px 14px;
+
+  border:
+    1px solid
+    rgba(255, 111, 118, 0.13);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 67, 77, 0.035);
+
+  color: #8e7478;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+}
+
+.medical-notice svg {
+  flex:
+    0 0 auto;
+
+  color: #ff747c;
+}
+
+.medical-fields {
+  display: grid;
+
+  gap: 19px;
+}
+
+/* =========================================================
+   BIOMETRIC CONSENT
+========================================================= */
+
+.consent-box {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin: 25px 34px 0;
+
+  padding: 14px;
+
+  border:
+    1px solid
+    rgba(105, 198, 237, 0.12);
+
+  border-radius: 9px;
+
+  background:
+    rgba(47, 137, 179, 0.045);
+
+  cursor: pointer;
+}
+
+.consent-box input {
+  width: 16px;
+  height: 16px;
+
+  margin-top: 2px;
+
+  accent-color: #70c9f1;
+
+  cursor: pointer;
+}
+
+.consent-box strong {
+  display: block;
+
+  color: #b8d5e0;
+
+  font-size: 10px;
+}
+
+.consent-box p {
+  margin:
+    5px 0 0;
+
+  color: #617782;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   CAMERA
+========================================================= */
+
+.camera-wrapper {
+  padding: 25px 34px 0;
+}
+
+.camera-placeholder {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 310px;
+
+  padding: 35px;
+
+  border:
+    1px dashed
+    rgba(104, 190, 229, 0.22);
+
+  border-radius: 11px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(43, 131, 174, 0.08),
+      transparent 55%
+    );
+}
+
+.camera-ring {
+  position: relative;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 105px;
+  height: 105px;
+
+  border:
+    1px solid
+    rgba(99, 192, 235, 0.3);
+
+  border-radius: 50%;
+
+  color: #75cdf8;
+
+  background:
+    rgba(42, 139, 184, 0.07);
+
+  animation:
+    cameraPulse
+    3s
+    ease-in-out
+    infinite;
+}
+
+.camera-ring::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -9px;
+
+  border:
+    1px solid
+    rgba(96, 198, 239, 0.1);
+
+  border-radius: 50%;
+
+  animation:
+    ringExpand
+    3s
+    ease-out
+    infinite;
+}
+
+@keyframes cameraPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ringExpand {
+  0% {
+    transform: scale(0.95);
+
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.18);
+
+    opacity: 0;
+  }
+}
+
+.camera-placeholder h3 {
+  margin:
+    20px 0 7px;
+
+  color: #dce9ef;
+
+  font-size: 15px;
+}
+
+.camera-placeholder p {
+  max-width: 380px;
+
+  margin:
+    0 0 19px;
+
+  text-align: center;
+
+  color: #647681;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+.camera-button,
+.scan-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding:
+    0 16px;
+
+  border:
+    1px solid
+    rgba(116, 200, 242, 0.3);
+
+  border-radius: 8px;
+
+  background:
+    rgba(62, 157, 203, 0.08);
+
+  color: #8ed5f8;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.camera-button:hover:not(:disabled),
+.scan-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  background:
+    rgba(62, 157, 203, 0.14);
+
+  border-color:
+    rgba(116, 200, 242, 0.5);
+}
+
+.camera-button:disabled,
+.scan-button:disabled,
+.primary-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+/* Camera error */
+
+.camera-error {
+  max-width: 500px;
+
+  margin:
+    0 0 15px;
+
+  padding:
+    9px 12px;
+
+  border:
+    1px solid
+    rgba(255, 92, 101, 0.18);
+
+  border-radius: 7px;
+
+  background:
+    rgba(255, 63, 72, 0.045);
+
+  color: #ff858b;
+
+  font-size: 9px;
+
+  text-align: center;
+}
+
+/* Live camera */
+
+.live-camera {
+  position: relative;
+
+  min-height: 430px;
+
+  border:
+    1px solid
+    rgba(98, 195, 235, 0.18);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: #020609;
+
+  box-shadow:
+    0 25px 80px
+    rgba(0, 0, 0, 0.4);
+}
+
+.live-camera video {
+  display: block;
+
+  width: 100%;
+  height: 430px;
+
+  object-fit: cover;
+
+  transform: scaleX(-1);
+
+  background: #010304;
+}
+
+.camera-overlay-grid {
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(92, 192, 230, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(92, 192, 230, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 38px 38px;
+
+  opacity: 0.22;
+
+  pointer-events: none;
+}
+
+.face-frame {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: min(270px, 60%);
+  height: 330px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border:
+    1px solid
+    rgba(103, 207, 247, 0.18);
+
+  border-radius: 45% 45% 42% 42%;
+
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+
+  border-color: #71d1f5;
+
+  border-style: solid;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(93, 204, 244, 0.55)
+    );
+}
+
+.corner.top-left {
+  left: -2px;
+  top: -2px;
+
+  border-width:
+    2px 0 0 2px;
+
+  border-radius: 10px 0 0 0;
+}
+
+.corner.top-right {
+  right: -2px;
+  top: -2px;
+
+  border-width:
+    2px 2px 0 0;
+
+  border-radius: 0 10px 0 0;
+}
+
+.corner.bottom-left {
+  left: -2px;
+  bottom: -2px;
+
+  border-width:
+    0 0 2px 2px;
+
+  border-radius: 0 0 0 10px;
+}
+
+.corner.bottom-right {
+  right: -2px;
+  bottom: -2px;
+
+  border-width:
+    0 2px 2px 0;
+
+  border-radius: 0 0 10px 0;
+}
+
+.face-scan-line {
+  position: absolute;
+
+  left: 12%;
+  right: 12%;
+
+  top: 15%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #72d5f7,
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px
+    rgba(89, 206, 245, 0.8);
+
+  animation:
+    faceScanner
+    3.2s
+    ease-in-out
+    infinite;
+}
+
+@keyframes faceScanner {
+  0% {
+    transform: translateY(0);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(275px);
+
+    opacity: 0;
+  }
+}
+
+.camera-status {
+  position: absolute;
+
+  left: 50%;
+  bottom: 17px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  width: max-content;
+
+  max-width: calc(100% - 30px);
+
+  padding:
+    8px 12px;
+
+  border:
+    1px solid
+    rgba(125, 205, 235, 0.13);
+
+  border-radius: 20px;
+
+  background:
+    rgba(2, 8, 11, 0.68);
+
+  backdrop-filter:
+    blur(10px);
+
+  color: #92aab5;
+
+  font-size: 9px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #59d59d;
+
+  box-shadow:
+    0 0 9px
+    rgba(89, 213, 157, 0.7);
+
+  animation:
+    statusPulse
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   FACE SUCCESS
+========================================================= */
+
+.face-success {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 310px;
+
+  padding: 35px;
+
+  border:
+    1px solid
+    rgba(86, 211, 165, 0.18);
+
+  border-radius: 11px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(48, 174, 128, 0.07),
+      transparent 55%
+    );
+
+  text-align: center;
+}
+
+.success-icon {
+  display: grid;
+
+  place-items: center;
+
+  width: 78px;
+  height: 78px;
+
+  border-radius: 50%;
+
+  color: #72d8ae;
+
+  background:
+    rgba(59, 186, 139, 0.07);
+
+  border:
+    1px solid
+    rgba(76, 210, 160, 0.2);
+
+  box-shadow:
+    0 0 35px
+    rgba(65, 202, 151, 0.08);
+
+  animation:
+    successPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+@keyframes successPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+.face-success h3 {
+  margin:
+    19px 0 7px;
+
+  color: #dcefe7;
+
+  font-size: 16px;
+}
+
+.face-success p {
+  max-width: 420px;
+
+  margin:
+    0 0 16px;
+
+  color: #657d73;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+.embedding-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 17px;
+
+  color: #78cba9;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   CAMERA ACTIONS
+========================================================= */
+
+.camera-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding:
+    18px 34px 0;
+}
+
+.secondary-button,
+.primary-button,
+.scan-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 40px;
+
+  padding:
+    0 15px;
+
+  border-radius: 7px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.secondary-button {
+  border:
+    1px solid
+    rgba(128, 185, 211, 0.13);
+
+  background:
+    transparent;
+
+  color: #748590;
+}
+
+.secondary-button:hover:not(:disabled) {
+  border-color:
+    rgba(128, 185, 211, 0.3);
+
+  color: #a5c4d0;
+}
+
+.primary-button {
+  border:
+    1px solid
+    #82cff5;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eff7fb,
+      #cfe3ed
+    );
+
+  color: #10181d;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.scan-button {
+  border:
+    1px solid
+    rgba(110, 211, 244, 0.4);
+
+  background:
+    rgba(62, 157, 203, 0.1);
+
+  color: #91daf8;
+}
+
+.form-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding:
+    20px 34px;
+
+  margin-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(130, 189, 216, 0.08);
+
+  background:
+    rgba(3, 10, 14, 0.35);
+}
+
+.form-actions.split {
+  margin-top: 0;
+}
+
+.spin {
+  animation:
+    spin
+    1s
+    linear
+    infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.biometric-security {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  margin:
+    18px 34px 0;
+
+  padding: 14px;
+
+  border:
+    1px solid
+    rgba(86, 198, 155, 0.1);
+
+  border-radius: 8px;
+
+  background:
+    rgba(44, 171, 126, 0.035);
+
+  color: #62d5a3;
+}
+
+.biometric-security .security-icon {
+  flex:
+    0 0 auto;
+}
+
+.biometric-security strong {
+  display: block;
+
+  color: #a8cfc0;
+
+  font-size: 10px;
+}
+
+.biometric-security p {
+  margin:
+    5px 0 0;
+
+  color: #627b71;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FOOTER NOTE
+========================================================= */
+
+.registration-footer-note {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 20px;
+
+  color: #4e606b;
+
+  font-size: 9px;
+}
+
+.registration-footer-note svg {
+  color: #5aafd6;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .register-header {
+    padding:
+      16px 18px;
+  }
+
+  .secure-badge {
+    display: none;
+  }
+
+  .register-container {
+    width:
+      calc(100% - 24px);
+
+    padding-top: 38px;
+  }
+
+  .register-heading h1 {
+    font-size: 39px;
+  }
+
+  .register-heading p {
+    font-size: 11px;
+  }
+
+  .progress-wrapper {
+    margin-top: 35px;
+  }
+
+  .progress-step {
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 5px;
+  }
+
+  .progress-step small {
+    display: none;
+  }
+
+  .progress-line {
+    margin:
+      0 6px;
+  }
+
+  .card-title {
+    padding:
+      22px 18px;
+  }
+
+  .form-content {
+    padding:
+      22px 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 17px;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    padding:
+      16px 18px;
+  }
+
+  .consent-box {
+    margin:
+      20px 18px 0;
+  }
+
+  .camera-wrapper {
+    padding:
+      20px 18px 0;
+  }
+
+  .camera-placeholder {
+    min-height: 270px;
+
+    padding:
+      25px 15px;
+  }
+
+  .live-camera {
+    min-height: 330px;
+  }
+
+  .live-camera video {
+    height: 330px;
+  }
+
+  .face-frame {
+    width: 210px;
+    height: 255px;
+  }
+
+  .camera-actions {
+    padding:
+      16px 18px 0;
+  }
+
+  .biometric-security {
+    margin:
+      18px 18px 0;
+  }
+
+  .biometric-grid {
+    background-size:
+      40px 40px;
+  }
+
+  .scan-circle-one {
+    width: 270px;
+    height: 270px;
+  }
+
+  .scan-circle-two {
+    width: 390px;
+    height: 390px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .biometric-grid,
+  .biometric-orb,
+  .face-scan-circle,
+  .biometric-particle,
+  .biometric-cross,
+  .scan-line-background,
+  .camera-ring,
+  .camera-ring::before,
+  .face-scan-line,
+  .status-dot,
+  .success-icon {
+    animation: none !important;
+  }
+}
